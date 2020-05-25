@@ -15,6 +15,8 @@
 		D12019BE247C3F000083126A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D12019BC247C3F000083126A /* LaunchScreen.storyboard */; };
 		D12019C9247C3F010083126A /* Mini_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019C8247C3F010083126A /* Mini_ProjectTests.swift */; };
 		D12019D4247C3F010083126A /* Mini_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019D3247C3F010083126A /* Mini_ProjectUITests.swift */; };
+		D12019E2247C42E50083126A /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019E1247C42E50083126A /* MainTableViewController.swift */; };
+		D12019E4247C437D0083126A /* MainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019E3247C437D0083126A /* MainData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		D12019CF247C3F010083126A /* Mini ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mini ProjectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D12019D3247C3F010083126A /* Mini_ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mini_ProjectUITests.swift; sourceTree = "<group>"; };
 		D12019D5247C3F010083126A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D12019E1247C42E50083126A /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		D12019E3247C437D0083126A /* MainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +105,9 @@
 			children = (
 				D12019B1247C3EFA0083126A /* AppDelegate.swift */,
 				D12019B3247C3EFA0083126A /* SceneDelegate.swift */,
-				D12019B5247C3EFA0083126A /* ViewController.swift */,
 				D12019B7247C3EFA0083126A /* Main.storyboard */,
+				D12019E6247C45550083126A /* Controllers */,
+				D12019E5247C45430083126A /* Model */,
 				D12019BA247C3F000083126A /* Assets.xcassets */,
 				D12019BC247C3F000083126A /* LaunchScreen.storyboard */,
 				D12019BF247C3F000083126A /* Info.plist */,
@@ -126,6 +131,23 @@
 				D12019D5247C3F010083126A /* Info.plist */,
 			);
 			path = "Mini ProjectUITests";
+			sourceTree = "<group>";
+		};
+		D12019E5247C45430083126A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D12019E3247C437D0083126A /* MainData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D12019E6247C45550083126A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D12019B5247C3EFA0083126A /* ViewController.swift */,
+				D12019E1247C42E50083126A /* MainTableViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +281,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D12019E4247C437D0083126A /* MainData.swift in Sources */,
+				D12019E2247C42E50083126A /* MainTableViewController.swift in Sources */,
 				D12019B6247C3EFA0083126A /* ViewController.swift in Sources */,
 				D12019B2247C3EFA0083126A /* AppDelegate.swift in Sources */,
 				D12019B4247C3EFA0083126A /* SceneDelegate.swift in Sources */,
