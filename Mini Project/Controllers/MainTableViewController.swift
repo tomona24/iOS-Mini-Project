@@ -15,7 +15,7 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fakeData.append(MainData.init(title: "Canada", data: [.totalCases: 1, .totalDeaths: 2], subItens: []))
+        fakeData.append(MainData.init(title: "Canada", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: []))
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
