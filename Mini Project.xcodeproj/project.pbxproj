@@ -17,6 +17,7 @@
 		D12019D4247C3F010083126A /* Mini_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019D3247C3F010083126A /* Mini_ProjectUITests.swift */; };
 		D12019E2247C42E50083126A /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019E1247C42E50083126A /* MainTableViewController.swift */; };
 		D12019E4247C437D0083126A /* MainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019E3247C437D0083126A /* MainData.swift */; };
+		D1206843247D73E100666896 /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1206842247D73E100666896 /* DetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D12019D5247C3F010083126A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D12019E1247C42E50083126A /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		D12019E3247C437D0083126A /* MainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainData.swift; sourceTree = "<group>"; };
+		D1206842247D73E100666896 /* DetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				D12019B5247C3EFA0083126A /* ViewController.swift */,
+				D1206842247D73E100666896 /* DetailsTableViewController.swift */,
 				D12019E1247C42E50083126A /* MainTableViewController.swift */,
 			);
 			path = Controllers;
@@ -285,6 +288,7 @@
 				D12019E2247C42E50083126A /* MainTableViewController.swift in Sources */,
 				D12019B6247C3EFA0083126A /* ViewController.swift in Sources */,
 				D12019B2247C3EFA0083126A /* AppDelegate.swift in Sources */,
+				D1206843247D73E100666896 /* DetailsTableViewController.swift in Sources */,
 				D12019B4247C3EFA0083126A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

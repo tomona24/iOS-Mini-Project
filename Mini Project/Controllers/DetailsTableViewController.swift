@@ -1,21 +1,30 @@
 //
-//  MainTableViewController.swift
+//  DetailsTableViewController.swift
 //  Mini Project
 //
-//  Created by Leandro Prado on 2020-05-25.
+//  Created by Leandro Prado on 2020-05-26.
 //  Copyright © 2020 Leandro Prado. All rights reserved.
 //
 
 import UIKit
 
-class MainTableViewController: UITableViewController {
+class DetailsTableViewController: UITableViewController {
 
-    var fakeData: [MainData] = []
+    var data: MainData!
+    @IBOutlet weak var totalCasesLabel: UILabel!
+    @IBOutlet weak var totalDeathsLabel: UILabel!
+    @IBOutlet weak var totalRecoveryLabel: UILabel!
+    @IBOutlet weak var activeCasesLabel: UILabel!
+    @IBOutlet weak var totalTestsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fakeData.append(MainData.init(title: "Canada", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: []))
+        let unknown = "N/A"
+        totalCasesLabel.text = data.data[.totalCases]?.description ?? unknown
+        totalDeathsLabel.text = data.data[.totalDeaths]?.description ?? unknown
+        totalRecoveryLabel.text = data.data[.totalRecoveries]?.description ?? unknown
+        activeCasesLabel.text = data.data[.activeCases]?.description ?? unknown
+        totalTestsLabel.text = data.data[.totalTests]?.description ?? unknown
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -26,37 +35,36 @@ class MainTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return fakeData.count
-    }
-
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath)
-
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        var cell: UITableViewCell
+//
+//        switch indexPath.section {
+//        case 0:
+//            cell = tableView.dequeueReusableCell(withIdentifier: "TotalCasesCell", for: indexPath)
+//            cell.textLabel?.text = data.data[.totalCases]?.description
+//        case 1:
+//            cell = tableView.dequeueReusableCell(withIdentifier: "TotalDeathsCell", for: indexPath)
+//            cell.textLabel?.text = data.data[.totalDeaths]?.description
+//        case 2:
+//            cell = tableView.dequeueReusableCell(withIdentifier: "TotalRecoveryCell", for: indexPath)
+//            cell.textLabel?.text = data.data[.totalRecoveries]?.description
+//        case 3:
+//            cell = tableView.dequeueReusableCell(withIdentifier: "ActiveCasesCell", for: indexPath)
+//            cell.textLabel?.text = data.data[.activeCases]?.description
+//        case 4:
+//            cell = tableView.dequeueReusableCell(withIdentifier: "TotalTestsCell", for: indexPath)
+//            cell.textLabel?.text = data.data[.totalTests]?.description
+//        default:
+//            cell = UITableViewCell.init()
+//        }
+        
         // Configure the cell...
-        cell.textLabel?.text = fakeData[indexPath.row].title
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        performSegue(withIdentifier: "DetailsSegue", sender: nil)
-    }
+        
+//        return cell
+//    }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsSegue", let destVC = segue.destination as? DetailsTableViewController {
-            //destVC.data = tableView.indexPathForSelectedRow
-            destVC.data = fakeData[0]
-            
-        }
-    }
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
