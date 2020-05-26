@@ -10,12 +10,26 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
-    var fakeData: [MainData] = []
+    var dataCollection: [MainData] = []
+    
+    var visibleList: [MainData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fakeData.append(MainData.init(title: "Canada", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: []))
+        let bc1 = MainData.init(title: "Coast", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [])
+        let bc2 = MainData.init(title: "Fraser", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [])
+        
+        
+        let bc = MainData.init(title: "British Columbia", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [bc1, bc2])
+        let al = MainData.init(title: "Alberta", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [])
+        let on = MainData.init(title: "Ontario", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [])
+
+        let canada = MainData.init(title: "Canada", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [bc, al, on], isHidden: false)
+        
+        dataCollection.append(canada)
+        visibleList.append(canada)
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,7 +47,7 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return fakeData.count
+        return visibleList.count
     }
 
     
@@ -41,20 +55,22 @@ class MainTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = fakeData[indexPath.row].title
+        cell.textLabel?.text = visibleList[indexPath.row].title
         return cell
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        performSegue(withIdentifier: "DetailsSegue", sender: nil)
+        performSegue(withIdentifier: "DetailsSegue", sender: indexPath)
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsSegue", let destVC = segue.destination as? DetailsTableViewController {
-            //destVC.data = tableView.indexPathForSelectedRow
-            destVC.data = fakeData[0]
-            
+        if segue.identifier == "DetailsSegue", let destVC = segue.destination as? DetailsTableViewController, let indexPath = sender as? IndexPath {
+            destVC.data = visibleList[indexPath.row]
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     /*

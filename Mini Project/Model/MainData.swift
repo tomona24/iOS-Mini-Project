@@ -13,9 +13,15 @@ struct MainData {
     var data: [Data: Int]
     var subItens: [MainData]
     
-    var isHidden: Bool = false
+    var isHidden: Bool = true
 
+    var isExpandable: Bool {
+        return subItens.count > 0
+    }
     
+    var hasData: Bool {
+        return data.count > 0
+    }
 }
 
 enum Data {
