@@ -17,15 +17,15 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let bc1 = MainData.init(title: "Coast", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [])
-        let bc2 = MainData.init(title: "Fraser", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [])
+        let bc1 = MainData.init(title: "Coast", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
+        let bc2 = MainData.init(title: "Fraser", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
         
         
-        let bc = MainData.init(title: "British Columbia", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [bc1, bc2])
-        let al = MainData.init(title: "Alberta", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [])
-        let on = MainData.init(title: "Ontario", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [])
+        let bc = MainData.init(title: "British Columbia", data: [.totalCases: 1, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [bc1, bc2])
+        let al = MainData.init(title: "Alberta", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
+        let on = MainData.init(title: "Ontario", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
 
-        let canada = MainData.init(title: "Canada", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItens: [bc, al, on], isHidden: false)
+        let canada = MainData.init(title: "Canada", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [bc, al, on], isHidden: false)
         
         dataCollection.append(canada)
         visibleList.append(canada)
@@ -70,7 +70,31 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = visibleList[indexPath.row]
         
+        if data.isExpandable {
+            if data.isExpanded {
+                let numRows = data.subItems.count
+                let indexRow = indexPath.row + 1
+                var indexes:[IndexPath] = []
+                for index in 1...numRows {
+                    visibleList[indexRow].isExpanded = false
+                    visibleList.remove(at: indexRow)
+                    indexes.append(IndexPath.init(row: indexPath.row + index, section: 0))
+                }
+                
+                tableView.deleteRows(at: indexes, with: .automatic)
+            } else {
+                for item in data.subItems {
+                    item.isHidden = false
+                    let newIndexRow = indexPath.row + 1
+                    visibleList.insert(item, at: newIndexRow)
+                
+                    tableView.insertRows(at: [IndexPath.init(row: newIndexRow, section: 0)], with: .automatic)
+                }
+            }
+            data.isExpanded = !data.isExpanded
+        }
     }
     
     /*

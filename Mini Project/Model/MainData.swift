@@ -8,20 +8,30 @@
 
 import Foundation
 
-struct MainData {
+class MainData {
     var title: String
     var data: [Data: Int]
-    var subItens: [MainData]
+    var subItems: [MainData]
     
-    var isHidden: Bool = true
+    var isHidden = true
+    var isExpanded = false
 
     var isExpandable: Bool {
-        return subItens.count > 0
+        return subItems.count > 0
     }
     
     var hasData: Bool {
         return data.count > 0
     }
+    
+    init(title: String, data: [Data: Int], subItems: [MainData], isHidden: Bool = true) {
+        self.title = title
+        self.data = data
+        self.subItems = subItems
+        self.isHidden = isHidden
+    }
+
+    
 }
 
 enum Data {
