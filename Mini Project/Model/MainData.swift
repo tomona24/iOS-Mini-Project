@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MainData {
+class MainData: Decodable {
     var title: String
     var data: [DataType: Int]
     var subItems: [MainData]
@@ -34,7 +34,11 @@ class MainData {
     
 }
 
-enum DataType {
-    case totalCases, totalDeaths, totalRecoveries, activeCases, totalTests
-        
+enum DataType: String, Decodable {
+    
+    case totalCases
+    case totalDeaths
+    case totalRecoveries
+    case activeCases
+    case totalTests
 }
