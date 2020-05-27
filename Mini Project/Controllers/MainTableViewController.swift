@@ -10,13 +10,63 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
+//    var dataCollection: [MainData] = []
+    
     var dataCollection: [MainData] = []
     
-    var visibleList: [MainData] = []
+    let baseURL = URL(string: "https://enafibogee2zom0.m.pipedream.net")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchData()
+            
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    fileprivate func fetchInfo(completion: @escaping () -> Void) {
+      // 1. create url
+      let url = baseURL
+      // 2. create a data task
+      let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        if let err = error {
+          print(err.localizedDescription)
+          return
+        }
+        // TODO set the dataCollection
+        if let data = data {
+            let decoder = JSONDecoder()
+            // Here we should parse the json to a list of MainData
+            
+//            if let ti = try? decoder.decode(Title.self, from: data){
+//                print(ti)
+//                print(ti.title)
+//            }
+//            let json = data.description
+//            print(data)
+//            print(json)
+          completion()
+        }
+      }
+//      indicator.startAnimating()
+      // 3. resume
+      task.resume()
+    }
+    
+    func fetchData() -> Void {
+        
+        fetchInfo {
+            // TODO update viewtable
+        }
+        
+        fetchFake()
+    }
+    
+    func fetchFake(){
         let bc1 = MainData.init(title: "Coast", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
         let bc2 = MainData.init(title: "Fraser", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
         
@@ -24,20 +74,11 @@ class MainTableViewController: UITableViewController {
         let bc = MainData.init(title: "British Columbia", data: [.totalCases: 1, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [bc1, bc2])
         let al = MainData.init(title: "Alberta", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
         let on = MainData.init(title: "Ontario", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
-
+        
         let canada = MainData.init(title: "Canada", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [bc, al, on], isHidden: false)
         
         dataCollection.append(canada)
-        visibleList.append(canada)
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,15 +88,27 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return visibleList.count
+        return dataCollection.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath)
+        let data = dataCollection[indexPath.row]
+        var cellIdentifier: String
+        switch data.level {
+        case 1:
+            cellIdentifier = "CountryCell"
+        case 2:
+            cellIdentifier = "ProvinceCell"
+        case 3:
+            cellIdentifier = "RegionCell"
+        default:
+            cellIdentifier = "CountryCell"
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DataTableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = visibleList[indexPath.row].title
+        cell.label?.text = data.title
         return cell
     }
     
@@ -65,12 +118,12 @@ class MainTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsSegue", let destVC = segue.destination as? DetailsTableViewController, let indexPath = sender as? IndexPath {
-            destVC.data = visibleList[indexPath.row]
+            destVC.data = dataCollection[indexPath.row]
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = visibleList[indexPath.row]
+        let data = dataCollection[indexPath.row]
         
         if data.isExpandable {
             if data.isExpanded {
@@ -78,18 +131,19 @@ class MainTableViewController: UITableViewController {
                 let indexRow = indexPath.row + 1
                 var indexes:[IndexPath] = []
                 for index in 1...numRows {
-                    visibleList[indexRow].isExpanded = false
-                    visibleList.remove(at: indexRow)
+                    dataCollection[indexRow].isExpanded = false
+                    dataCollection.remove(at: indexRow)
                     indexes.append(IndexPath.init(row: indexPath.row + index, section: 0))
                 }
                 
                 tableView.deleteRows(at: indexes, with: .automatic)
             } else {
-                for item in data.subItems {
-                    item.isHidden = false
-                    let newIndexRow = indexPath.row + 1
-                    visibleList.insert(item, at: newIndexRow)
-                
+                for index in 0..<data.subItems.count{
+                    let child = data.subItems[index]
+                    child.isHidden = false
+                    child.level = data.level + 1
+                    let newIndexRow = indexPath.row + index + 1
+                    dataCollection.insert(child, at: newIndexRow)                
                     tableView.insertRows(at: [IndexPath.init(row: newIndexRow, section: 0)], with: .automatic)
                 }
             }

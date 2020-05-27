@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C04E138C247ECE3100127178 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04E138B247ECE3100127178 /* DataTableViewCell.swift */; };
 		D12019B2247C3EFA0083126A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019B1247C3EFA0083126A /* AppDelegate.swift */; };
 		D12019B4247C3EFA0083126A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019B3247C3EFA0083126A /* SceneDelegate.swift */; };
 		D12019B6247C3EFA0083126A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019B5247C3EFA0083126A /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C04E138B247ECE3100127178 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		D12019AE247C3EFA0083126A /* Mini Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D12019B1247C3EFA0083126A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D12019B3247C3EFA0083126A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C04E138D247ECE3D00127178 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C04E138B247ECE3100127178 /* DataTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D12019A5247C3EFA0083126A = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +123,7 @@
 				D12019BA247C3F000083126A /* Assets.xcassets */,
 				D12019BC247C3F000083126A /* LaunchScreen.storyboard */,
 				D12019BF247C3F000083126A /* Info.plist */,
+				C04E138D247ECE3D00127178 /* View */,
 			);
 			path = "Mini Project";
 			sourceTree = "<group>";
@@ -289,6 +300,7 @@
 				D12019B6247C3EFA0083126A /* ViewController.swift in Sources */,
 				D12019B2247C3EFA0083126A /* AppDelegate.swift in Sources */,
 				D1206843247D73E100666896 /* DetailsTableViewController.swift in Sources */,
+				C04E138C247ECE3100127178 /* DataTableViewCell.swift in Sources */,
 				D12019B4247C3EFA0083126A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
