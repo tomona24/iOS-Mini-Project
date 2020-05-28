@@ -28,11 +28,11 @@ class DetailsTableViewController: UITableViewController {
 
         navigationItem.titleView = title
         
-        totalCasesLabel.text = data.data[.totalCases]?.description ?? unknown
-        totalDeathsLabel.text = data.data[.totalDeaths]?.description ?? unknown
-        totalRecoveryLabel.text = data.data[.totalRecoveries]?.description ?? unknown
-        activeCasesLabel.text = data.data[.activeCases]?.description ?? unknown
-        totalTestsLabel.text = data.data[.totalTests]?.description ?? unknown
+        totalCasesLabel.text = data.data[DataType.totalCases.rawValue]?.description ?? unknown
+        totalDeathsLabel.text = data.data[DataType.totalDeaths.rawValue]?.description ?? unknown
+        totalRecoveryLabel.text = data.data[DataType.totalRecoveries.rawValue]?.description ?? unknown
+        activeCasesLabel.text = data.data[DataType.activeCases.rawValue]?.description ?? unknown
+        totalTestsLabel.text = data.data[DataType.totalTests.rawValue]?.description ?? unknown
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C038947324802527006EA57C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C038947224802527006EA57C /* Model.swift */; };
 		C04E138C247ECE3100127178 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04E138B247ECE3100127178 /* DataTableViewCell.swift */; };
 		D12019B2247C3EFA0083126A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019B1247C3EFA0083126A /* AppDelegate.swift */; };
 		D12019B4247C3EFA0083126A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019B3247C3EFA0083126A /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C038947224802527006EA57C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C04E138B247ECE3100127178 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		D12019AE247C3EFA0083126A /* Mini Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D12019B1247C3EFA0083126A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				D12019E3247C437D0083126A /* MainData.swift */,
+				C038947224802527006EA57C /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				D1206843247D73E100666896 /* DetailsTableViewController.swift in Sources */,
 				C04E138C247ECE3100127178 /* DataTableViewCell.swift in Sources */,
 				D12019B4247C3EFA0083126A /* SceneDelegate.swift in Sources */,
+				C038947324802527006EA57C /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

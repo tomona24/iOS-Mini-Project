@@ -52,7 +52,7 @@ class MainTableViewController: UITableViewController {
                     print(error)
                     return
                 }
-//                print(collection)
+                self.dataCollection = collection
                 //            let json = data.description
                 //            print(data)
                 //            print(json)
@@ -69,21 +69,24 @@ class MainTableViewController: UITableViewController {
         
         fetchInfo {
             // TODO update viewtable
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         
-        fetchFake()
+//        fetchFake()
     }
     
     func fetchFake(){
-        let bc1 = MainData.init(title: "Coast", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
-        let bc2 = MainData.init(title: "Fraser", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
+        let bc1 = MainData.init(title: "Coast", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
+        let bc2 = MainData.init(title: "Fraser", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
         
         
-        let bc = MainData.init(title: "British Columbia", data: [.totalCases: 1, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [bc1, bc2])
-        let al = MainData.init(title: "Alberta", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
-        let on = MainData.init(title: "Ontario", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])
+        let bc = MainData.init(title: "British Columbia", data: [DataType.totalCases.rawValue: 1, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [bc1, bc2])
+        let al = MainData.init(title: "Alberta", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
+        let on = MainData.init(title: "Ontario", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
         
-        let canada = MainData.init(title: "Canada", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [bc, al, on], isHidden: false)
+        let canada = MainData.init(title: "Canada", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [bc, al, on], isHidden: false)
         
         dataCollection.append(canada)
     }
@@ -135,7 +138,7 @@ class MainTableViewController: UITableViewController {
         
         if data.isExpandable {
             if data.isExpanded {
-                let numRows = data.subItems.count
+                let numRows = data.subItems!.count
                 let indexRow = indexPath.row + 1
                 var indexes:[IndexPath] = []
                 for index in 1...numRows {
@@ -146,8 +149,8 @@ class MainTableViewController: UITableViewController {
                 
                 tableView.deleteRows(at: indexes, with: .automatic)
             } else {
-                for index in 0..<data.subItems.count{
-                    let child = data.subItems[index]
+                for index in 0..<data.subItems!.count{
+                    let child = data.subItems![index]
                     child.isHidden = false
                     child.level = data.level + 1
                     let newIndexRow = indexPath.row + index + 1
