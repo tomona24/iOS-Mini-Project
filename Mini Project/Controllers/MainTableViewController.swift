@@ -138,17 +138,18 @@ class MainTableViewController: UITableViewController {
         
         if data.isExpandable {
             if data.isExpanded {
-                let numRows = data.subItems!.count
+                let numRows = setNotExpandedRecursivelly(data)
+//                let numRows = data.subItems!.count
                 let indexRow = indexPath.row + 1
                 var indexes:[IndexPath] = []
-                for index in 1...numRows {
-                    dataCollection[indexRow].isExpanded = false
+                for index in 1..<numRows {
                     dataCollection.remove(at: indexRow)
                     indexes.append(IndexPath.init(row: indexPath.row + index, section: 0))
                 }
                 
                 tableView.deleteRows(at: indexes, with: .automatic)
             } else {
+                data.isExpanded = true
                 for index in 0..<data.subItems!.count{
                     let child = data.subItems![index]
                     child.isHidden = false
@@ -158,10 +159,20 @@ class MainTableViewController: UITableViewController {
                     tableView.insertRows(at: [IndexPath.init(row: newIndexRow, section: 0)], with: .automatic)
                 }
             }
-            data.isExpanded = !data.isExpanded
         }
     }
     
+    func setNotExpandedRecursivelly(_ data:MainData) -> Int {
+        if data.isExpandable, data.isExpanded {
+            data.isExpanded = false
+            var sum = 0
+            for child in data.subItems! {
+                sum += setNotExpandedRecursivelly(child)
+            }
+            return 1 + sum
+        }
+        return 1
+    }
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
