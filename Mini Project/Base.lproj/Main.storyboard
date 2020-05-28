@@ -16,10 +16,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="CountryCell" id="wlU-Hz-pnN" customClass="DataTableViewCell" customModule="Mini_Project" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wlU-Hz-pnN" id="mvm-XV-oxj">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYy-wR-Jsb">
@@ -41,21 +41,21 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="ProvinceCell" id="VpP-2L-Pci" customClass="DataTableViewCell" customModule="Mini_Project" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="71" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VpP-2L-Pci" id="TSL-gH-rL0">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yec-Yx-DQY">
-                                            <rect key="frame" x="40" y="11" width="312" height="21.5"/>
+                                            <rect key="frame" x="60" y="11" width="292" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Yec-Yx-DQY" firstAttribute="leading" secondItem="TSL-gH-rL0" secondAttribute="leadingMargin" constant="20" id="ZwK-F8-WbS"/>
+                                        <constraint firstItem="Yec-Yx-DQY" firstAttribute="leading" secondItem="TSL-gH-rL0" secondAttribute="leadingMargin" constant="40" id="ZwK-F8-WbS"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Yec-Yx-DQY" secondAttribute="bottom" id="dbO-Ly-Yn2"/>
                                         <constraint firstItem="Yec-Yx-DQY" firstAttribute="top" secondItem="TSL-gH-rL0" secondAttribute="topMargin" id="fYm-sg-EBh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Yec-Yx-DQY" secondAttribute="trailing" constant="10" id="ye2-ZO-wvR"/>
@@ -66,14 +66,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="RegionCell" id="ddt-ot-bD6" customClass="DataTableViewCell" customModule="Mini_Project" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114.5" width="414" height="43"/>
+                                <rect key="frame" x="0.0" y="115" width="414" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ddt-ot-bD6" id="zXv-Ab-Hge">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjD-ha-WAK">
-                                            <rect key="frame" x="50" y="11" width="302" height="21"/>
+                                            <rect key="frame" x="90" y="11" width="262" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="CjD-ha-WAK" firstAttribute="top" secondItem="zXv-Ab-Hge" secondAttribute="topMargin" id="1cp-QC-jqV"/>
-                                        <constraint firstItem="CjD-ha-WAK" firstAttribute="leading" secondItem="zXv-Ab-Hge" secondAttribute="leadingMargin" constant="30" id="6Md-LI-np1"/>
+                                        <constraint firstItem="CjD-ha-WAK" firstAttribute="leading" secondItem="zXv-Ab-Hge" secondAttribute="leadingMargin" constant="70" id="6Md-LI-np1"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="CjD-ha-WAK" secondAttribute="bottom" id="ATC-eb-9xt"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="CjD-ha-WAK" secondAttribute="trailing" constant="10" id="EWd-zf-iCK"/>
                                     </constraints>
@@ -96,7 +96,9 @@
                             <outlet property="delegate" destination="Lwf-yM-rTj" id="y0z-wE-SJ1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Covid-19 Cases" largeTitleDisplayMode="always" id="07J-G6-qbk"/>
+                    <navigationItem key="navigationItem" title="Covid-19 Cases" prompt=" " largeTitleDisplayMode="always" id="07J-G6-qbk">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="BPh-Ig-741"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="HdT-Y1-he9" kind="show" identifier="DetailsSegue" id="mcc-Ee-46E"/>
                     </connections>
@@ -268,9 +270,12 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XQl-rA-gzn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="scm-x7-lyD">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="scm-x7-lyD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

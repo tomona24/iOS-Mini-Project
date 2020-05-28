@@ -19,6 +19,13 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let title = UITextView.init()
+        title.text = "Covid-19 Cases 2"
+        title.layer.backgroundColor = .none
+        title.font = UIFont.systemFont(ofSize: 30)
+        
+        navigationItem.titleView = title
+        
         fetchData()
         
         // Uncomment the following line to preserve selection between presentations
@@ -45,7 +52,7 @@ class MainTableViewController: UITableViewController {
                     print(error)
                     return
                 }
-                print(collection)
+//                print(collection)
                 //            let json = data.description
                 //            print(data)
                 //            print(json)

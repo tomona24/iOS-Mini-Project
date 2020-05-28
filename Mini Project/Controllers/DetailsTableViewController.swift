@@ -21,7 +21,12 @@ class DetailsTableViewController: UITableViewController {
         super.viewDidLoad()
         let unknown = "N/A"
         
-        navigationItem.title = "\(data.title) - Details"
+        let title = UITextView.init()
+        title.text = data.title
+        title.layer.backgroundColor = .none
+        title.font = UIFont.systemFont(ofSize: 30)
+
+        navigationItem.titleView = title
         
         totalCasesLabel.text = data.data[.totalCases]?.description ?? unknown
         totalDeathsLabel.text = data.data[.totalDeaths]?.description ?? unknown
