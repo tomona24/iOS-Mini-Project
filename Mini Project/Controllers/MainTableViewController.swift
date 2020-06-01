@@ -13,9 +13,7 @@ class MainTableViewController: UITableViewController {
     //    var dataCollection: [MainData] = []
     
     var dataCollection: [MainData] = []
-    
-    let baseURL = URL(string: "https://enafibogee2zom0.m.pipedream.net")!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +34,7 @@ class MainTableViewController: UITableViewController {
     }
     
     fileprivate func fetchInfo(completion: @escaping () -> Void) {
+        let baseURL = URL(string: "https://enafibogee2zom0.m.pipedream.net")!
         let task = URLSession.shared.dataTask(with: baseURL) { (data, response, error) in
             if let err = error {
                 print(err.localizedDescription)
@@ -45,17 +44,16 @@ class MainTableViewController: UITableViewController {
             let decoder = JSONDecoder()
             
             if let data = data {
-                var collection: [MainData]
+                var collection: [DataJson]
                 do {
-                    collection = try decoder.decode([MainData].self, from: data)
+                    collection = try decoder.decode([DataJson].self, from: data)
                 } catch {
                     print(error)
                     return
                 }
-                self.dataCollection = collection
-                //            let json = data.description
-                //            print(data)
-                //            print(json)
+                for item in collection {
+                    self.dataCollection.append(MainData.init(from: item))
+                }
                 completion()
             }
             
@@ -77,19 +75,19 @@ class MainTableViewController: UITableViewController {
 //        fetchFake()
     }
     
-    func fetchFake(){
-        let bc1 = MainData.init(title: "Coast", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
-        let bc2 = MainData.init(title: "Fraser", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
-        
-        
-        let bc = MainData.init(title: "British Columbia", data: [DataType.totalCases.rawValue: 1, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [bc1, bc2])
-        let al = MainData.init(title: "Alberta", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
-        let on = MainData.init(title: "Ontario", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
-        
-        let canada = MainData.init(title: "Canada", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [bc, al, on], isHidden: false)
-        
-        dataCollection.append(canada)
-    }
+//    func fetchFake(){
+//        let bc1 = MainData.init(title: "Coast", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
+//        let bc2 = MainData.init(title: "Fraser", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
+//        
+//        
+//        let bc = MainData.init(title: "British Columbia", data: [DataType.totalCases.rawValue: 1, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [bc1, bc2])
+//        let al = MainData.init(title: "Alberta", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
+//        let on = MainData.init(title: "Ontario", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
+//        
+//        let canada = MainData.init(title: "Canada", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [bc, al, on], isHidden: false)
+//        
+//        dataCollection.append(canada)
+//    }
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -139,7 +137,6 @@ class MainTableViewController: UITableViewController {
         if data.isExpandable {
             if data.isExpanded {
                 let numRows = setNotExpandedRecursivelly(data)
-//                let numRows = data.subItems!.count
                 let indexRow = indexPath.row + 1
                 var indexes:[IndexPath] = []
                 for index in 1..<numRows {
