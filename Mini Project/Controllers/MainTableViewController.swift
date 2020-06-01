@@ -10,6 +10,8 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
+    weak var delegate: MainTableViewController?
+    
     //    var dataCollection: [MainData] = []
     
     var dataCollection: [MainData] = []
