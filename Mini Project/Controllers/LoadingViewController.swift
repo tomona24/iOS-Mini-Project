@@ -18,17 +18,22 @@ class LoadingViewController: UIViewController {
            indicator.style = .whiteLarge //setting size
            indicator.hidesWhenStopped = true //when load stops, hide the indicator
            indicator.color = .green //色設定
+        let timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
        }
+    
+    @objc func timeToMoveOn() {
+        self.performSegue(withIdentifier: "LoadingSegue", sender: self)
+    }
     
        @IBAction func stop(_ sender: Any) {
            indicator.stopAnimating() //stop loading
        }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoadingSegue" {
-            let destinationViewController = segue.destination as? MainTableViewController
-            destinationViewController?.delegate = self
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "LoadingSegue" {
+//            let destinationViewController = segue.destination as? MainTableViewController
+//            destinationViewController?.delegate = self
+//    }
     
 
     /*
