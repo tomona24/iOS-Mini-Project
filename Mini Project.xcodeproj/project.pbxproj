@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62676A1424857A36001D8DA6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62676A1324857A36001D8DA6 /* LoadingViewController.swift */; };
 		C04E138C247ECE3100127178 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04E138B247ECE3100127178 /* DataTableViewCell.swift */; };
 		D12019B2247C3EFA0083126A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019B1247C3EFA0083126A /* AppDelegate.swift */; };
 		D12019B4247C3EFA0083126A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12019B3247C3EFA0083126A /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62676A1324857A36001D8DA6 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		C04E138B247ECE3100127178 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		D12019AE247C3EFA0083126A /* Mini Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D12019B1247C3EFA0083126A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				D12019B5247C3EFA0083126A /* ViewController.swift */,
+				62676A1324857A36001D8DA6 /* LoadingViewController.swift */,
 				D1206842247D73E100666896 /* DetailsTableViewController.swift */,
 				D12019E1247C42E50083126A /* MainTableViewController.swift */,
 			);
@@ -298,6 +301,7 @@
 				D12019E4247C437D0083126A /* MainData.swift in Sources */,
 				D12019E2247C42E50083126A /* MainTableViewController.swift in Sources */,
 				D12019B6247C3EFA0083126A /* ViewController.swift in Sources */,
+				62676A1424857A36001D8DA6 /* LoadingViewController.swift in Sources */,
 				D12019B2247C3EFA0083126A /* AppDelegate.swift in Sources */,
 				D1206843247D73E100666896 /* DetailsTableViewController.swift in Sources */,
 				C04E138C247ECE3100127178 /* DataTableViewCell.swift in Sources */,

@@ -32,7 +32,7 @@ class MainTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+
     fileprivate func fetchInfo(completion: @escaping () -> Void) {
         let baseURL = URL(string: "https://enafibogee2zom0.m.pipedream.net")!
         let task = URLSession.shared.dataTask(with: baseURL) { (data, response, error) in
@@ -42,7 +42,7 @@ class MainTableViewController: UITableViewController {
             }
             // TODO set the dataCollection
             let decoder = JSONDecoder()
-            
+
             if let data = data {
                 var collection: [DataJson]
                 do {
@@ -56,7 +56,7 @@ class MainTableViewController: UITableViewController {
                 }
                 completion()
             }
-            
+
         }
         //      indicator.startAnimating()
         // 3. resume
@@ -64,14 +64,14 @@ class MainTableViewController: UITableViewController {
     }
     
     func fetchData() -> Void {
-        
+
         fetchInfo {
             // TODO update viewtable
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
-        
+
 //        fetchFake()
     }
     
