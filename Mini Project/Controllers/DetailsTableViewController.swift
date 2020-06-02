@@ -2,8 +2,8 @@
 //  DetailsTableViewController.swift
 //  Mini Project
 //
-//  Created by Leandro Prado on 2020-05-26.
-//  Copyright © 2020 Leandro Prado. All rights reserved.
+//  Created by Leandro Prado, Cayo Mesquita, Tomona Sako on 2020-05-26.
+//  Copyright © 2020 Leandro Prado, Cayo Mesquita, Tomona Sako. All rights reserved.
 //
 
 import UIKit
@@ -19,7 +19,6 @@ class DetailsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let unknown = "N/A"
         
         let title = UITextView.init()
         title.text = data.title
@@ -28,11 +27,33 @@ class DetailsTableViewController: UITableViewController {
 
         navigationItem.titleView = title
         
-        totalCasesLabel.text = data.data[.totalCases]?.description ?? unknown
-        totalDeathsLabel.text = data.data[.totalDeaths]?.description ?? unknown
-        totalRecoveryLabel.text = data.data[.totalRecoveries]?.description ?? unknown
-        activeCasesLabel.text = data.data[.activeCases]?.description ?? unknown
-        totalTestsLabel.text = data.data[.totalTests]?.description ?? unknown
+//        Original insertion of numbers in cells:
+//        let unknown = "N/A"
+//        totalCasesLabel.text = data.data[.totalCases]?.description ?? unknown
+//        totalDeathsLabel.text = data.data[.totalDeaths]?.description ?? unknown
+//        totalRecoveryLabel.text = data.data[.totalRecoveries]?.description ?? unknown
+//        totalTestsLabel.text = data.data[.totalTests]?.description ?? unknown
+        
+//        Formatted numbers inserted in cells:
+        let formater = NumberFormatter()
+        formater.groupingSeparator = "."
+        formater.numberStyle = .decimal
+        if let totalCasesNum = Int(data.data[.totalCases]!.description) {
+            let formattedNumber = formater.string(from: NSNumber(value: totalCasesNum))
+            totalCasesLabel.text = formattedNumber
+        }
+        if let totalDeathsNum = Int(data.data[.totalDeaths]!.description) {
+            let formattedNumber = formater.string(from: NSNumber(value: totalDeathsNum))
+            totalDeathsLabel.text = formattedNumber
+        }
+        if let totalRecoveryNum = Int(data.data[.totalRecoveries]!.description) {
+            let formattedNumber = formater.string(from: NSNumber(value: totalRecoveryNum))
+            totalRecoveryLabel.text = formattedNumber
+        }
+        if let totalTestsNum = Int(data.data[.totalTests]!.description) {
+            let formattedNumber = formater.string(from: NSNumber(value: totalTestsNum))
+            totalTestsLabel.text = formattedNumber
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
