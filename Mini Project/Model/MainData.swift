@@ -59,11 +59,11 @@ class MainData {
 
 enum DataType: String, Decodable {
     
-    case totalCases
-    case totalDeaths
-    case totalRecoveries
+    case totalCases = "numtotal"
+    case totalDeaths = "numdeaths"
+    case totalRecoveries = "numrecover"
     case activeCases
-    case totalTests
+    case totalTests = "numtested"
 }
 
 struct DataJson: Decodable{
