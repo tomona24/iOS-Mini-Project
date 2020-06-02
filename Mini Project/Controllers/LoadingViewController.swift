@@ -9,41 +9,71 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
-
-     @IBOutlet weak var indicator: UIActivityIndicatorView!
-       
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    var loadedCollectionData: [MainData] = []
+    
     override func viewDidLoad() {
-           super.viewDidLoad()
-           indicator.startAnimating() //start Loading
-           indicator.style = .whiteLarge //setting size
-           indicator.hidesWhenStopped = true //when load stops, hide the indicator
-           indicator.color = .green //色設定
-        let timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
-       }
-    
-    @objc func timeToMoveOn() {
-        self.performSegue(withIdentifier: "LoadingSegue", sender: self)
+        super.viewDidLoad()
+        indicator.startAnimating() //start Loading
+        indicator.style = .large //setting size
+        indicator.hidesWhenStopped = true //when load stops, hide the indicator
+        indicator.color = .systemGreen //set the color
+        // Do any additional setup after loading the view.
+        fetchData()
+        //        fetchFake()
     }
     
-       @IBAction func stop(_ sender: Any) {
-           indicator.stopAnimating() //stop loading
-       }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "LoadingSegue" {
-//            let destinationViewController = segue.destination as? MainTableViewController
-//            destinationViewController?.delegate = self
-//    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    fileprivate func fetchInfo(completion: @escaping () -> Void) {
+        let baseURL = URL(string: "https://enafibogee2zom0.m.pipedream.net")!
+        let task = URLSession.shared.dataTask(with: baseURL) { (data, response, error) in
+            if let err = error {
+                print(err.localizedDescription)
+                return
+            }
+            // TODO set the dataCollection
+            let decoder = JSONDecoder()
+            
+            if let data = data {
+                var collection: [DataJson]
+                do {
+                    collection = try decoder.decode([DataJson].self, from: data)
+                } catch {
+                    print(error)
+                    return
+                }
+                for item in collection {
+                    self.loadedCollectionData.append(MainData.init(from: item))
+                }
+                completion()
+            }
+            
+        }
+        // 3. resume
+        task.resume()
+    }
+    
+    func fetchData() -> Void {
+        
+        fetchInfo {
+            // TODO update viewtable
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+                self.performSegue(withIdentifier: "LoadingSegue", sender: nil)
+            }
+        }
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let navC = segue.destination as! UINavigationController
+        let nextVC = navC.topViewController as! MainTableViewController
+        if segue.identifier == "LoadingSegue" {
+            nextVC.dataCollection = loadedCollectionData
+        }
     }
-    */
-
+    
 }
+
