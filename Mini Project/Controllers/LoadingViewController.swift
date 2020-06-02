@@ -29,37 +29,32 @@ class LoadingViewController: UIViewController {
     
     
         fileprivate func fetchInfo(completion: @escaping () -> Void) {
-//            let baseURL = URL(string: "https://enafibogee2zom0.m.pipedream.net")!
-//            let task = URLSession.shared.dataTask(with: baseURL) { (data, response, error) in
-//                if let err = error {
-//                    print(err.localizedDescription)
-//                    return
-//                }
-//                // TODO set the dataCollection
-//                let decoder = JSONDecoder()
-//
-//                if let data = data {
-//                    var collection: [DataJson]
-//                    do {
-//                        collection = try decoder.decode([DataJson].self, from: data)
-//                    } catch {
-//                        print(error)
-//                        return
-//                    }
-//                    for item in collection {
-//                        self.loadedCollectionData.append(MainData.init(from: item))
-//                        print(self.loadedCollectionData)
-//                    }
-//                    completion()
-//                }
-//
-//            }
-//            //      indicator.startAnimating()
-//            // 3. resume
-//            task.resume()
-            
-            fetchFake()
+            let baseURL = URL(string: "https://enafibogee2zom0.m.pipedream.net")!
+            let task = URLSession.shared.dataTask(with: baseURL) { (data, response, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                    return
+                }
+                // TODO set the dataCollection
+                let decoder = JSONDecoder()
 
+                if let data = data {
+                    var collection: [DataJson]
+                    do {
+                        collection = try decoder.decode([DataJson].self, from: data)
+                    } catch {
+                        print(error)
+                        return
+                    }
+                    for item in collection {
+                        self.loadedCollectionData.append(MainData.init(from: item))
+                    }
+                    completion()
+                }
+
+            }
+            // 3. resume
+            task.resume()
         }
         
         func fetchData() -> Void {
@@ -67,14 +62,11 @@ class LoadingViewController: UIViewController {
             fetchInfo {
                 // TODO update viewtable
                 DispatchQueue.main.async {
+                    self.indicator.stopAnimating()
+                    self.performSegue(withIdentifier: "loadedJSON", sender: nil)
                 }
             }
-            indicator.stopAnimating()
-            self.performSegue(withIdentifier: "loadedJSON", sender: nil)
-
             }
-    
-    
 
     func fetchFake(){
         let bc1 = MainData.init(title: "Coast", data: [.totalCases: 30, .totalDeaths: 10, .activeCases: 12, .totalRecoveries: 6, .totalTests: 40], subItems: [])

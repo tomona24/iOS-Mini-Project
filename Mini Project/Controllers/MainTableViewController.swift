@@ -24,7 +24,7 @@ class MainTableViewController: UITableViewController {
         
         navigationItem.titleView = title
         
-        fetchData()
+//        fetchData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
