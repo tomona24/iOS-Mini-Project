@@ -28,7 +28,7 @@ class DetailsTableViewController: UITableViewController {
         navigationItem.titleView = title
         
 //        Original insertion of numbers in cells:
-//        let unknown = "N/A"
+        let unknown = "N/A"
 //        totalCasesLabel.text = data.data[.totalCases]?.description ?? unknown
 //        totalDeathsLabel.text = data.data[.totalDeaths]?.description ?? unknown
 //        totalRecoveryLabel.text = data.data[.totalRecoveries]?.description ?? unknown
@@ -38,21 +38,32 @@ class DetailsTableViewController: UITableViewController {
         let formater = NumberFormatter()
         formater.groupingSeparator = "."
         formater.numberStyle = .decimal
-        if let totalCasesNum = Int(data.data[.totalCases]!.description) {
+        if let totalCasesNum = Int(data.data[.totalCases]?.description ?? unknown) {
             let formattedNumber = formater.string(from: NSNumber(value: totalCasesNum))
             totalCasesLabel.text = formattedNumber
+        } else {
+            totalCasesLabel.text = unknown
         }
-        if let totalDeathsNum = Int(data.data[.totalDeaths]!.description) {
+        
+        if let totalDeathsNum = Int(data.data[.totalDeaths]?.description ?? unknown) {
             let formattedNumber = formater.string(from: NSNumber(value: totalDeathsNum))
             totalDeathsLabel.text = formattedNumber
+        } else {
+            totalDeathsLabel.text = unknown
         }
-        if let totalRecoveryNum = Int(data.data[.totalRecoveries]!.description) {
+        
+        if let totalRecoveryNum = Int(data.data[.totalRecoveries]?.description ?? unknown) {
             let formattedNumber = formater.string(from: NSNumber(value: totalRecoveryNum))
             totalRecoveryLabel.text = formattedNumber
+        } else {
+            totalRecoveryLabel.text = unknown
         }
-        if let totalTestsNum = Int(data.data[.totalTests]!.description) {
+        
+        if let totalTestsNum = Int(data.data[.totalTests]?.description ?? unknown) {
             let formattedNumber = formater.string(from: NSNumber(value: totalTestsNum))
             totalTestsLabel.text = formattedNumber
+        } else {
+            totalTestsLabel.text = unknown
         }
         
         // Uncomment the following line to preserve selection between presentations
