@@ -11,85 +11,22 @@ import UIKit
 class MainTableViewController: UITableViewController {
     
     weak var delegate: MainTableViewController?
-    
-    //    var dataCollection: [MainData] = []
-    
     var dataCollection: [MainData] = []
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let title = UITextView.init()
-        title.text = "Covid-19 Cases 2"
+        title.text = "Covid-19 Cases"
         title.layer.backgroundColor = .none
         title.font = UIFont.systemFont(ofSize: 30)
         
-        navigationItem.titleView = title
-        
-//        fetchData()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.titleView = title
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 126.0 / 255.0, green: 164.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = .white
+
     }
-    
-    fileprivate func fetchInfo(completion: @escaping () -> Void) {
-        let baseURL = URL(string: "https://enafibogee2zom0.m.pipedream.net")!
-        let task = URLSession.shared.dataTask(with: baseURL) { (data, response, error) in
-            if let err = error {
-                print(err.localizedDescription)
-                return
-            }
-            // TODO set the dataCollection
-            let decoder = JSONDecoder()
-            
-            if let data = data {
-                var collection: [DataJson]
-                do {
-                    collection = try decoder.decode([DataJson].self, from: data)
-                } catch {
-                    print(error)
-                    return
-                }
-                for item in collection {
-                    self.dataCollection.append(MainData.init(from: item))
-                }
-                completion()
-            }
-            
-        }
-        //      indicator.startAnimating()
-        
-        task.resume()
-    }
-    
-    func fetchData() -> Void {
-        
-        fetchInfo {
-            // TODO update viewtable
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        
-//        fetchFake()
-    }
-    
-//    func fetchFake(){
-//        let bc1 = MainData.init(title: "Coast", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
-//        let bc2 = MainData.init(title: "Fraser", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
-//        
-//        
-//        let bc = MainData.init(title: "British Columbia", data: [DataType.totalCases.rawValue: 1, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [bc1, bc2])
-//        let al = MainData.init(title: "Alberta", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
-//        let on = MainData.init(title: "Ontario", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [])
-//        
-//        let canada = MainData.init(title: "Canada", data: [DataType.totalCases.rawValue: 30, DataType.totalDeaths.rawValue: 10, DataType.activeCases.rawValue: 12, DataType.totalRecoveries.rawValue: 6, DataType.totalTests.rawValue: 40], subItems: [bc, al, on], isHidden: false)
-//        
-//        dataCollection.append(canada)
-//    }
+
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -172,49 +109,6 @@ class MainTableViewController: UITableViewController {
         }
         return 1
     }
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

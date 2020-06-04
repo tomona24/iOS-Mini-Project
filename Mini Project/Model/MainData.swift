@@ -12,7 +12,7 @@ class MainData {
     var title: String
     var data: [DataType: Int]
     var subItems: [MainData]?
-    
+    var date : String
     var isHidden = true
     var isExpanded = false
     var level = 1
@@ -29,9 +29,10 @@ class MainData {
         return data.count > 0
     }
     
-    init(title: String, data: [DataType: Int], subItems: [MainData], isHidden: Bool = true) {
+    init(title: String, data: [DataType: Int], subItems: [MainData], date: String, isHidden: Bool = true) {
         self.title = title
         self.data = data
+        self.date = date
         self.subItems = subItems
         self.isHidden = isHidden
     }
@@ -39,6 +40,7 @@ class MainData {
     init(from json: DataJson){
         self.title = json.title
         self.data = [:]
+        self.date = json.date
         for entry in json.data {
             if let key = DataType.init(rawValue: entry.key) {
                 data[key] = entry.value
@@ -52,6 +54,7 @@ class MainData {
     enum CodingKeys: String {
         case title
         case data
+        case date
         case subItems
         case dataType
     }
@@ -69,6 +72,7 @@ enum DataType: String, Decodable {
 struct DataJson: Decodable{
     var title: String
     var data: [String: Int]
+    var date: String
     var subItems: [DataJson]?
 }
 

@@ -18,12 +18,9 @@ class LoadingViewController: UIViewController {
         indicator.startAnimating() //start Loading
         indicator.style = .large //setting size
         indicator.hidesWhenStopped = true //when load stops, hide the indicator
-        indicator.color = .systemGreen //set the color
-        // Do any additional setup after loading the view.
+        indicator.color = UIColor(red: 126.0 / 255.0, green: 164.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
         fetchData()
-        //        fetchFake()
     }
-    
     
     
     fileprivate func fetchInfo(completion: @escaping () -> Void) {
@@ -33,7 +30,7 @@ class LoadingViewController: UIViewController {
                 print(err.localizedDescription)
                 return
             }
-            // TODO set the dataCollection
+            // set the dataCollection
             let decoder = JSONDecoder()
             
             if let data = data {
@@ -49,7 +46,6 @@ class LoadingViewController: UIViewController {
                 }
                 completion()
             }
-            
         }
         // 3. resume
         task.resume()
@@ -58,7 +54,7 @@ class LoadingViewController: UIViewController {
     func fetchData() -> Void {
         
         fetchInfo {
-            // TODO update viewtable
+            // go to MainTableViewController
             DispatchQueue.main.async {
                 self.indicator.stopAnimating()
                 self.performSegue(withIdentifier: "LoadingSegue", sender: nil)
